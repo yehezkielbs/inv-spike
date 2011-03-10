@@ -10,6 +10,50 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20110308203018) do
+
+  create_table "customers", :force => true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "netzke_component_states", :force => true do |t|
+    t.string   "component"
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "netzke_component_states", ["component"], :name => "index_netzke_component_states_on_component"
+  add_index "netzke_component_states", ["role_id"], :name => "index_netzke_component_states_on_role_id"
+  add_index "netzke_component_states", ["user_id"], :name => "index_netzke_component_states_on_user_id"
+
+  create_table "sale_details", :force => true do |t|
+    t.integer  "sale_id"
+    t.integer  "item_id"
+    t.integer  "qty"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sales", :force => true do |t|
+    t.string   "code"
+    t.datetime "date"
+    t.integer  "customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
